@@ -1,0 +1,78 @@
+<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Fullscreen Button</title>
+<style>
+     body {
+      margin: 0;
+      background-image: url("https://files.catbox.moe/7opgt0.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #f0f8ff;
+      color: #333333;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+  .c-button {
+    min-width: 50%;
+    font-family: fantasy;
+    appearance: none;
+    border: 0;
+    border-color: #fff;
+    border-radius: 5px;
+    background: #274e13;
+    color: #fff;
+    padding: 0px 46px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+  }
+
+  .c-button:hover {
+    background: #a04f4f;
+  }
+
+  .c-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #cbd6ee;
+  }
+</style>
+</head>
+<body style="margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center;">
+  <button class="c-button">Bloxd.io</button>
+
+  <script>
+    var url = "https://script.google.com/macros/s/AKfycbyvcvs9LpadnMdkM1lR1hafJ5v0jsDBAlp3URZcEHSuQz3fzPfqL_kkbWhJ82MxOcn6/exec";
+    var win;
+
+    document.querySelector('button').onclick = function() {
+      if (win && !win.closed) {
+        win.focus();
+      } else {
+        win = window.open('', '', 'width=800,height=600');
+        win.document.body.style.margin = '0';
+        win.document.body.style.height = '100vh';
+        var iframe = win.document.createElement('iframe');
+        iframe.style.border = 'none';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.margin = '0';
+        iframe.src = url;
+        win.document.body.appendChild(iframe);
+
+        var interval = setInterval(function() {
+          if (win.closed) {
+            clearInterval(interval);
+            win = undefined;
+          }
+        }, 500);
+      }
+    };
+  </script>
+</body>
+</html>
